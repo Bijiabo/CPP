@@ -1,0 +1,35 @@
+<template name="manageMembers">
+    <h1>{{title}}</h1>
+
+
+    <div class="main">
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <td>User Id</td>
+                    <td>User Name</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each users}}
+                <tr>
+                    <td>{{_id}}</td>
+                    <td>{{username}}</td>
+                    <td>
+                        {{#unless isSelf _id}}
+                        <span class="toggle-admin glyphicon {{#if isAdmin profile.group}} glyphicon-minus {{else}} glyphicon-plus {{/if}}" data-userid="{{_id}}">
+                            Administrator
+                        </span>
+                        {{/unless}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+
+
+</template>
