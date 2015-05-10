@@ -1,18 +1,3 @@
-threads_a_gogo = Npm.require "threads_a_gogo"
-
-#public collections
-Meteor.publish "posts",()->Posts.find()
-Meteor.publish "sensors",()->sensors.find()
-Meteor.publish "audioInfo",()->AudioInfo.find()
-Meteor.publish "user", ()->
-  if this.userId
-    Meteor.users.findOne this.userId, {fields : {
-      services : false
-      createdAt : false
-    }}
-  else
-    null
-
 #user manage
 Meteor.publish "userTemp",()->
   if this.userId
@@ -42,6 +27,3 @@ Accounts.onCreateUser (options,user)->
     if userCount==0 then options.profile.group = "administrator"
     user.profile = options.profile
   return user
-
-
-Meteor.startup

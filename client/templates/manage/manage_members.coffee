@@ -22,13 +22,11 @@ Template.manageMembers.events {
     target = $(e.target)
     targetUserId = target.data "userid"
     targetUserGroup = "member"
-    isAdminNow = if Meteor.users.findOne(targetUserId).profile.group is "administrator" then true else false
-
 
     if targetUserId isnt Meteor.userId()
-      if isAdminNow isnt true
+      if userGroupPermission[Meteor.users.findOne(targetUserId).profile.group]("manage", "manage") isnt true
         targetUserGroup = "administrator"
-      else if isAdminNow
+      else
         targetUserGroup = "member"
 
       Meteor.users.update targetUserId,{$set: {"profile.group" : targetUserGroup} },(error)->
