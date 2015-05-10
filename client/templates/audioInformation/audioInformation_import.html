@@ -1,0 +1,16 @@
+<template name="audioInformationImport">
+    {{#if hasPermission}}
+        <h1>Import data for audio information.</h1>
+
+        <div class="main">
+            <input id="audioinformation-import-data" type="file" class="form-control file" multiple/>
+            <hr/>
+            {{#each uploads}}
+                {{url download=true}}
+            {{/each}}
+        </div>
+
+    {{else}}
+        <h1>You have no permission.</h1>
+    {{/if}}
+</template>

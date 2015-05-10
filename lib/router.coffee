@@ -33,6 +33,7 @@ Router.route "/sensors/client", "name":"sensorClient", "data":()->sensors.findOn
 #audio information
 @audioInformationPath = "audioInformation"
 Router.route "/"+audioInformationPath, "name":"audioInformationHome"
+Router.route "/"+audioInformationPath+"/import", "name":"audioInformationImport"
 Router.route "/"+audioInformationPath+"/replenish/:_id?", "name":"audioInformationReplenish"
 Router.route "/"+audioInformationPath+"/soundQuality/:_id?", "name":"audioInformationSoundQuality"
 Router.route "/"+audioInformationPath+"/important/:_id?", "name":"audioInformationImportant"
