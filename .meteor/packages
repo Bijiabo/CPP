@@ -14,3 +14,4 @@ accounts-password
 sacha:spin
 cfs:standard-packages
 cfs:filesystem
+cfs:ui

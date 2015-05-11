@@ -6,10 +6,15 @@
             <input id="audioinformation-import-data" type="file" class="form-control file" multiple/>
             <hr/>
             {{#each uploads}}
-                {{url download=true}}
+                {{log}}
+                <a href="{{url}}">upload item</a>
+                {{#unless this.isUploaded}}
+                    {{> FS.UploadProgressBar}}
+                {{/unless}}
+                Delete {{this.name}}: {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+                <br/>
             {{/each}}
         </div>
-
     {{else}}
         <h1>You have no permission.</h1>
     {{/if}}

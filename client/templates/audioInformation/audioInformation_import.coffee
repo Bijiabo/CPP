@@ -1,14 +1,20 @@
+Meteor.subscribe "uploads"
+
+Template.audioInformationImport.onCreated = ()->
+
 Template.audioInformationImport.helpers {
+  log : ()-> console.log this
+
   hasPermission : ()->userGroupPermission[Meteor.users.findOne(Meteor.userId).profile.group]("audioInformation","manage")
 
-  uploads : ()-> Uploads.find()
+  uploads : ()-> UploadsStore.find()
 }
 
 Template.audioInformationImport.events {
   "change #audioinformation-import-data" : (event, template)->
     files = event.target.files
     for file in files
-      Uploads.insert file, (error, fileObject)->
+      UploadsStore.insert file, (error, fileObject)->
         if error
           console.log error
         else
