@@ -7,11 +7,16 @@
             <hr/>
             {{#each uploads}}
                 {{log}}
-                <a href="{{url}}">upload item</a>
+
+                [ <a href="{{url}}">upload item</a> ]
+
                 {{#unless this.isUploaded}}
                     {{> FS.UploadProgressBar}}
+                {{else}}
+                    Delete
+                    {{this.name}}: {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
                 {{/unless}}
-                Delete {{this.name}}: {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+
                 <br/>
             {{/each}}
         </div>
