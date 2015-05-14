@@ -7,7 +7,6 @@
             <hr/>
             {{#each uploads}}
                 {{log}}
-
                 [ <a href="{{url}}">upload item</a> ]
 
                 {{#unless this.isUploaded}}
@@ -15,9 +14,15 @@
                 {{else}}
                     Delete
                     {{this.name}}: {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+
+                    <br/>
+                    {{fileData url _id}}
+                    <textarea id="file-data-textarea-{{_id}}" cols="30" rows="10"></textarea>
+
+
                 {{/unless}}
 
-                <br/>
+                <hr/>
             {{/each}}
         </div>
     {{else}}

@@ -1,4 +1,4 @@
-threads_a_gogo = Npm.require "threads_a_gogo"
+#threads_a_gogo = Npm.require "threads_a_gogo"
 
 
 #public collections

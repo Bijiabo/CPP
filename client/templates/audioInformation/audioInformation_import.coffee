@@ -8,6 +8,13 @@ Template.audioInformationImport.helpers {
   hasPermission : ()->userGroupPermission[Meteor.users.findOne(Meteor.userId).profile.group]("audioInformation","manage")
 
   uploads : ()-> UploadsStore.find()
+
+  fileData : (url, id)->
+    ###
+    Meteor.http.get url , (error, result)->
+      $("#file-data-textarea-"+id).text JSON.stringify result.data
+    ###
+
 }
 
 Template.audioInformationImport.events {
