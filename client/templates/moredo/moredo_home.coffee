@@ -1,24 +1,3 @@
-defaultModes = [
-  {
-    key : "beforeSleep"
-    name : "睡前"
-    type : "default"
-  },
-
-  {
-    key : "inDoor"
-    name : "室内"
-    type : "default"
-  },
-
-  {
-    key : "outDoor"
-    name : "户外"
-    type : "default"
-  },
-
-]
-
 Template.moredoHome.helpers {
   playList : ()->
     defaultModeForUserPlayLists = "outDoor"
@@ -42,7 +21,7 @@ Template.moredoHome.helpers {
 
   mode : ()->
     if UserModes.find().count() == 0 and Meteor.user()
-      for modeItem in defaultModes
+      for modeItem in publicConfig.defaultModes
         modeItem.userId = Meteor.userId()
         UserModes.insert modeItem
 

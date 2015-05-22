@@ -6,6 +6,7 @@ uploadDocumentPath = path.resolve(".").split('.meteor')[0]+"uploads/"
 Meteor.methods {
   helloWorld : () -> "hello,world!"
 
+#获取用户播放列表
   getPlayList : (mode) ->
     if !mode then mode="inDoor"
 
@@ -29,6 +30,21 @@ Meteor.methods {
     else
       []
 
+# 获取用户模式
+  getModeList : ()->
+    if Meteor.user()
+      if UserModes.find().count() is 0
+        for modeItem in publicConfig.defaultModes
+          modeItem.userId = Meteor.userId()
+          UserModes.insert modeItem
+
+      UserModes.find {userId : Meteor.userId()}
+      .fetch()
+    else
+      []
+      
+
+# 导入数据至数据库
   importAudioInformationData : ()->
     console.log "import audio information data"
     dataItem = UploadsStore.findOne({},{sort : {"_id":"desc"}})
