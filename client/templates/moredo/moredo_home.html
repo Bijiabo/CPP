@@ -1,0 +1,25 @@
+<template name="moredoHome">
+    <h1>moredo home.</h1>
+
+    <div class="main">
+        {{#each playList}}
+            {{name}}
+            <br/>
+            {{description}}
+            <br/>
+            {{quality}}
+
+            <hr/>
+        {{/each}}
+
+        <div class="btn-group" role="group" aria-label="mode_switch">
+            {{#each mode}}
+                <button type="button" class="btn btn-default" data-key="{{key}}">
+                    {{name}}
+                </button>
+            {{/each}}
+
+        </div>
+
+    </div>
+</template>

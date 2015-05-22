@@ -43,6 +43,10 @@ Router.route "/"+audioInformationPath+"/important/:_id?", "name":"audioInformati
 Router.route "/" + managePath, "name":"manageHome"
 Router.route "/" + managePath + "/members", "name":"manageMembers"
 
+#moredo webApp
+@moredoPath = "moredo"
+Router.route "/" + moredoPath, "name":"moredoHome"
+
 
 Router.onBeforeAction "dataNotFound", "only":"postPage"
 Router.onBeforeAction requireLogin, "only":"postSubmit"

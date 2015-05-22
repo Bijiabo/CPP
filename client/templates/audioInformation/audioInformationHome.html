@@ -3,4 +3,22 @@
     <a href="#" class="btn btn-default">CPP DEMO APP</a>
     <a href="{{pathFor 'audioInformationReplenish'}}" class="btn btn-default">CPP START</a>
     <a href="{{pathFor 'audioInformationImport'}}" class="btn btn-default">Import Data</a>
+
+    <hr/>
+
+    {{#each formData}}
+        <label for="">{{label}}</label>
+        <br/>
+
+        {{#if isInput controlTag}}
+            <input type="{{controlType}}" placeholder="{{placeHolder}}" value="{{value}}"/>
+        {{/if}}
+
+        {{#if isTextArea controlTag}}
+            <textarea name="{{label}}" cols="30" rows="10" placeholder="{{placeHolder}}">{{value}}</textarea>
+        {{/if}}
+        <hr/>
+    {{/each}}
+
+    <div id="test"></div>
 </template>
