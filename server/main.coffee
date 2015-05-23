@@ -42,7 +42,82 @@ Meteor.methods {
       .fetch()
     else
       []
-      
+
+# 获取模式下所有播放列表
+  getAllPlayListForMode : (mode) ->
+    if !mode then mode = "inDoor"
+
+    AudioInfo.find().fetch()
+
+# 用户添加模式
+  addModeByUser : (mode)->
+    if Meteor.user()
+      data = UserModes.insert {
+        userId : Meteor.userId()
+        key : "custom"+ new Date()
+        name : mode
+        type : "custom"
+      }
+
+      {
+        error : false
+        data : data
+      }
+    else
+      {
+        error : true
+        data : "未登录"
+      }
+
+# 用户删除模式
+  removeModeByUser : (modeKey)->
+    if Meteor.user()
+      data = UserModes.remove {
+        key : modeKey
+        userId : Meteor.userId()
+      }
+
+      {
+        error : false
+        data : data
+      }
+    else
+      {
+        error : true
+        data : "未登录"
+      }
+
+# 用户添加新音频到相应模式下
+  addNewAudioForModeByUser : (modeId, audioName, audioURL)->
+    if Meteor.user()
+
+    else
+      {
+      error : true
+      data : "未登录"
+      }
+
+# 用户删除相应模式下音频
+  removePlayListItemInModeByUser : (mode, playListItemId)->
+    if Meteor.user()
+
+      data = UserPlayLists.remove {
+        userId : Meteor.userId()
+        playItemId : playListItemId
+        mode : mode
+      }
+
+      console.log data
+
+      {
+        error : false
+        data : data
+      }
+    else
+      {
+        error : true
+        data : "未登录"
+      }
 
 # 导入数据至数据库
   importAudioInformationData : ()->
