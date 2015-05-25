@@ -3,6 +3,7 @@ fs = Npm.require "fs"
 path = Npm.require('path')
 uploadDocumentPath = path.resolve(".").split('.meteor')[0]+"uploads/"
 
+
 Meteor.methods {
   helloWorld : () -> "hello,world!"
 
@@ -11,7 +12,7 @@ Meteor.methods {
     if !mode then mode="inDoor"
 
     if Meteor.user()
-      if UserPlayLists.find({userId : Meteor.userId()}).count() is 0
+      if UserPlayLists.find({ userId : Meteor.userId() , mode : mode}).count() is 0
         audioInformationCursor = AudioInfo.find({}, {limit:10})
         audioInformationIdArray = audioInformationCursor.map (item)->item._id
         for i in [9..0]
