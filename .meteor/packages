@@ -16,3 +16,7 @@ cfs:standard-packages
 cfs:filesystem
 cfs:ui
 mike:mocha
+fourseven:scss
+meteoric:ionic-sass
+meteoric:ionicons-sass
+meteoric:ionic

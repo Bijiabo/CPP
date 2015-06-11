@@ -12,6 +12,7 @@ Meteor.methods {
     if !mode then mode="inDoor"
 
     if Meteor.user()
+      ###
       if UserPlayLists.find({ userId : Meteor.userId() , mode : mode}).count() is 0
         audioInformationCursor = AudioInfo.find({}, {limit:10})
         audioInformationIdArray = audioInformationCursor.map (item)->item._id
@@ -21,12 +22,15 @@ Meteor.methods {
             playItemId : audioInformationIdArray[i]
             mode : mode
           }
+      ###
 
       userPlayListIdArray = UserPlayLists.find({
         mode : mode
         userId : Meteor.userId()
       }).map (item)->item.playItemId
+
       info = AudioInfo.find({_id : {$in : userPlayListIdArray}})
+      console.log info.length
       info.fetch()
     else
       []
@@ -89,8 +93,26 @@ Meteor.methods {
       }
 
 # 用户添加新音频到相应模式下
-  addNewAudioForModeByUser : (modeId, audioName, audioURL)->
+  addNewAudioForModeByUser : (mode, playItemId)->
     if Meteor.user()
+      UserPlayLists.upsert {
+          userId : Meteor.userId()
+          playItemId : playItemId
+          mode : mode
+        },
+        {
+          $set : {
+            userId : Meteor.userId()
+            playItemId : playItemId
+            mode : mode
+          }
+        },
+        true,
+        (err,res)->
+          return {
+            error : err
+            res : res
+          }
 
     else
       {
@@ -119,6 +141,7 @@ Meteor.methods {
         error : true
         data : "未登录"
       }
+
 
 # 导入数据至数据库
   importAudioInformationData : ()->
