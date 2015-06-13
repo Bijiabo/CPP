@@ -1,9 +1,3 @@
-#threads_a_gogo = Npm.require "threads_a_gogo"
-fs = Npm.require "fs"
-path = Npm.require('path')
-uploadDocumentPath = path.resolve(".").split('.meteor')[0]+"uploads/"
-
-
 Meteor.methods {
   helloWorld : () -> "hello,world!"
 
@@ -65,13 +59,13 @@ Meteor.methods {
       }
 
       {
-        error : false
-        data : data
+      error : false
+      data : data
       }
     else
       {
-        error : true
-        data : "未登录"
+      error : true
+      data : "未登录"
       }
 
 # 用户删除模式
@@ -83,13 +77,13 @@ Meteor.methods {
       }
 
       {
-        error : false
-        data : data
+      error : false
+      data : data
       }
     else
       {
-        error : true
-        data : "未登录"
+      error : true
+      data : "未登录"
       }
 
 # 用户添加新音频到相应模式下
@@ -110,8 +104,8 @@ Meteor.methods {
         true,
         (err,res)->
           return {
-            error : err
-            res : res
+          error : err
+          res : res
           }
 
     else
@@ -133,13 +127,13 @@ Meteor.methods {
       console.log data
 
       {
-        error : false
-        data : data
+      error : false
+      data : data
       }
     else
       {
-        error : true
-        data : "未登录"
+      error : true
+      data : "未登录"
       }
 
 
@@ -160,9 +154,7 @@ Meteor.methods {
 
       {
         error : false
-        data : {
-          insertIdArray : insertIdArray
-        }
+        data : {insertIdArray : insertIdArray}
       }
 
     else
@@ -172,5 +164,3 @@ Meteor.methods {
       }
 
 }
-
-Meteor.startup
